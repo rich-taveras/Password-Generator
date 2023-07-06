@@ -1,55 +1,61 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+var savePassword = "";
+var specialChar = "/?!@#$%^&(){}[]<>=+-";
+var lowerCase = "acbdefghijklmnopqrstuvwxyz";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numeric = "0123456789";
+
 //  function declaration / function statement
 function generatePassword() {
-  var savepassword = "";
-  var tagName = prompt(
+  var passwordLenght = prompt(
     "How many characters would you like your password to contain?"
   );
-
-  if (tagName < 8 || tagName > 129) {
+  if (passwordLenght < 8 || passwordLenght > 128) {
     alert("Password lenght should be between 8 to 128 characters");
     return "";
-  } else {
-    var specialConfirm = confirm(
-      "Click Ok to confirm including special characters"
-    );
-    var lowerConfirm = confirm(
-      "Click Ok to confirm including lowercase characters"
-    );
-    var upperConfirm = confirm(
-      "Click Ok to confirm including uppercase characters"
-    );
-    var numericConfirm = confirm(
-      "Click Ok to confirm including numeric characters"
-    );
-    var specialCh = "/?!@#$%^&";
-    var lowerCase = "acbdefghijklmnopqrstuvwxyz";
-    var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var numeric = "0123456789";
-    if (specialConfirm) {
-    var ramdomIndex = Math.floor(Math.random() *specialCh.length)
-    savepassword = savepassword + specialCh[ramdomIndex]
-    console.log(savepassword)
+  }
+  var specialConfirm = confirm(
+    "Click Ok to confirm including special characters"
+  );
+  var lowerConfirm = confirm(
+    "Click Ok to confirm including lowercase characters"
+  );
+  var upperConfirm = confirm(
+    "Click Ok to confirm including uppercase characters"
+  );
+  var numericConfirm = confirm(
+    "Click Ok to confirm including numeric characters"
+  );
+  if (specialConfirm === false && lowerConfirm === false && upperConfirm === false && numericConfirm === false){
+    alert ("Must select at least one character type");
+    return "";
+  }
+  for (var i = 0; i < passwordLenght; i++) {
+    if (specialConfirm && savePassword.length < passwordLenght) {
+      var ramdomIndex = Math.floor(Math.random() * specialChar.length);
+      savePassword = savePassword + specialChar[ramdomIndex];
+      console.log(savePassword);
     }
-    if (lowerConfirm){
-      var ramdomIndex = Math.floor(Math.random() *lowerCase.length)
-      savepassword = savepassword + lowerCase[ramdomIndex]
-    console.log(savepassword)
+    if (lowerConfirm && savePassword.length < passwordLenght) {
+      var ramdomIndex = Math.floor(Math.random() * lowerCase.length);
+      savePassword = savePassword + lowerCase[ramdomIndex];
+      console.log(savePassword);
     }
-    if (upperConfirm){
-      var ramdomIndex = Math.floor(Math.random() *upperCase.length)
-      savepassword = savepassword + upperCase[ramdomIndex]
-    console.log(savepassword)
+    if (upperConfirm && savePassword.length < passwordLenght) {
+      var ramdomIndex = Math.floor(Math.random() * upperCase.length);
+      savePassword = savePassword + upperCase[ramdomIndex];
+      console.log(savePassword);
     }
-    if (numericConfirm){
-      var ramdomIndex = Math.floor(Math.random() *numeric.length)
-      savepassword = savepassword +numeric[ramdomIndex]
-    console.log(savepassword)
+    if (numericConfirm && savePassword.length < passwordLenght) {
+      var ramdomIndex = Math.floor(Math.random() * numeric.length);
+      savePassword = savePassword + numeric[ramdomIndex];
+      console.log(savePassword);
     }
   }
-  return savepassword
+ 
+  return savePassword;
 }
 
 // Write password to the #password input
@@ -63,16 +69,3 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// alert ("How many characters would you like your password to contain?", )
-
-// How many characters would you like your password to contain?
-
-// Password length must be more than 7 characters
-// Password length must be less than 129 characters
-
-// Click Ok to confirm including special characters
-// Click Ok to confirm including numeric characters
-// Click Ok to confirm including lowercase characters
-// Click Ok to confirm including uppercase characters
-
-// Must select at least one character type
